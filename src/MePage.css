@@ -1,0 +1,422 @@
+/* src/MePage.css */
+
+:root {
+  --primary-color: #a85768;   
+  --secondary-color: #d68c98; 
+  --bg-color: #f8f6f7;
+  --box-bg: #ffffff;
+  --text-main: #4a3b3e;
+  --text-light: #998a8d;
+}
+
+.me-container {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Lato', sans-serif;
+  color: var(--text-main);
+  padding-bottom: 90px;
+}
+
+/* --- 1. CLEAN HEADER SECTION --- */
+.profile-header {
+  background: linear-gradient(135deg, #a85768 0%, #d68c98 100%);
+  padding: 1.5rem 1.5rem 3.5rem 1.5rem; /* Padding adjusted */
+  color: white;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 4px 15px rgba(168, 87, 104, 0.2);
+}
+
+.page-title {
+  margin: 0 0 1.5rem 0; /* Space below title */
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+/* User Card Layout */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar-section {
+  position: relative;
+}
+
+.avatar-circle {
+  width: 55px; /* Slightly smaller to match image */
+  height: 55px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-initials {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Tiny Gold Badge */
+.badge-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: #f1c40f; 
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+/* User Info - Flexible Row */
+.user-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Prevents overflow on small screens */
+}
+
+.name-row {
+  display: flex;
+  align-items: baseline; /* Aligns text cleanly */
+  gap: 8px;
+  flex-wrap: wrap; /* Wraps if name is too long */
+}
+
+.user-name {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: white; /* Force white text */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Adds contrast shadow */
+}
+
+.user-email {
+  font-size: 0.75rem;
+  opacity: 0.95; /* Increased opacity */
+  font-weight: 500; /* Made slightly bolder */
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4); /* Adds contrast shadow */
+}
+
+
+.member-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background-color: rgba(0, 0, 0, 0.15); /* Dark transparent pill */
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  background: white;
+  color: var(--primary-color); /* Pink Text */
+  border: 1px solid white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.edit-btn:hover {
+  transform: scale(1.05);
+}
+
+/* --- 2. CONTENT AREA (Overlap) --- */
+.me-content {
+  padding: 0 1rem;
+  margin-top: -2rem; /* Pulls content up */
+  position: relative;
+  z-index: 10;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats Row */
+.stats-row {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 25px;
+  background-color: #eee;
+}
+
+/* Generic Box */
+.section-box {
+  background-color: var(--box-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+/* --- 3. PURCHASES BOX --- */
+.box-header {
+  padding: 1rem;
+  border-bottom: 1px solid #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.view-history {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.purchases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1.5rem 0.5rem;
+}
+
+.purchase-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+/* Icon Circle */
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  background-color: #fff5f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  transition: all 0.2s;
+}
+
+.purchase-item:hover .icon-circle {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.purchase-item span {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* --- 4. MENU LIST --- */
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #fcfcfc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #fafafa;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.menu-icon {
+  color: var(--secondary-color);
+}
+
+/* --- 5. LOGOUT BUTTON --- */
+.logout-row-btn {
+  width: 100%;
+  background-color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.logout-row-btn:hover {
+  background-color: #fff5f5;
+}
+
+/* --- BOTTOM NAV --- */
+.bottom-nav {
+  background-color: white;
+  border-top: 1px solid #ebd4d8;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8rem 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.02);
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-light);
+  font-size: 0.7rem;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}
+
+/* ADD THESE TO YOUR EXISTING src/MePage.css */
+
+/* --- EDIT MODE STYLES --- */
+
+/* 1. Uploaded Avatar Image */
+.uploaded-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* 2. Avatar Camera Overlay */
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: fadeIn 0.2s;
+}
+
+/* 3. Background Camera Button */
+.bg-edit-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.bg-edit-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 4. Edit/Save Button State */
+.edit-btn.save-mode {
+  background-color: var(--primary-color); /* Highlight color when saving */
+  color: white;
+  border-color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ensure the header handles images well */
+.profile-header {
+  transition: background 0.3s ease; /* Smooth transition for background image */
+}
+
+
+
