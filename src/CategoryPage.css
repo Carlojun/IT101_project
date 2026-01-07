@@ -1,12 +1,11 @@
 /* src/CategoryPage.css */
 
-/* GLOBAL VARIABLES */
 :root {
-  --primary-color: #a85768;   /* Deep Blush / Old Rose */
-  --secondary-color: #d68c98; /* Dusty Pink */
-  --bg-color: #f8f6f7;        /* Warm Light Grey */
-  --text-main: #4a3b3e;       /* Dark Warm Grey */
-  --text-light: #998a8d;      /* Muted Grey */
+  --primary-color: #1a1a1a;
+  --secondary-color: #7d7d7d;
+  --bg-color: #f8f8f8;
+  --text-main: #1a1a1a;
+  --text-light: #666666;
 }
 
 .category-page-container {
@@ -14,10 +13,9 @@
   background-color: var(--bg-color);
   font-family: 'Lato', sans-serif;
   color: var(--text-main);
-  padding-bottom: 90px; /* Space for Bottom Nav */
+  padding-bottom: 90px;
 }
 
-/* --- HEADER --- */
 .cat-header {
   background: white;
   padding: 1rem 1.5rem;
@@ -36,12 +34,11 @@
   font-size: 1.1rem;
   color: var(--primary-color);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-align: center;
-  flex: 1; /* Centers the title between buttons */
+  flex: 1;
 }
 
-/* Header Buttons (Back, Cart, Filter) */
 .back-btn, .header-icon-btn, .filter-btn {
   background: none;
   border: none;
@@ -56,24 +53,22 @@
 }
 
 .back-btn:hover, .header-icon-btn:hover {
-  background-color: #fcecee;
+  background-color: #f0f0f0;
   color: var(--primary-color);
 }
 
-/* Right Side Container (Cart + Filter) */
 .header-right {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* --- FILTER DROPDOWN --- */
 .filter-container {
   position: relative;
 }
 
 .filter-btn.active {
-  background-color: #fcecee;
+  background-color: #f0f0f0;
   color: var(--primary-color);
 }
 
@@ -82,7 +77,7 @@
   top: 120%;
   right: 0;
   background: white;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   width: 160px;
   display: flex;
@@ -105,16 +100,12 @@
   transition: background 0.2s;
 }
 
-.filter-dropdown button:last-child {
-  border-bottom: none;
-}
-
 .filter-dropdown button:hover {
   background-color: #fafafa;
 }
 
 .filter-dropdown button.active {
-  background-color: #fcecee;
+  background-color: #f0f0f0;
   color: var(--primary-color);
   font-weight: 700;
 }
@@ -124,7 +115,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Sort Status Bar */
 .sort-status {
   padding: 0.8rem 1.5rem 0 1.5rem;
   font-size: 0.75rem;
@@ -139,7 +129,6 @@
   color: var(--primary-color);
 }
 
-/* --- GRID CONTENT --- */
 .cat-content {
   padding: 1rem 1.5rem;
 }
@@ -158,10 +147,9 @@
   font-size: 0.9rem;
 }
 
-/* --- PRODUCT CARD --- */
 .cat-product-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 1rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   position: relative;
@@ -175,21 +163,20 @@
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
-/* Image Placeholder */
 .cat-product-image {
-  background-color: #fcecee;
+  background-color: #f5f5f5;
   height: 140px;
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: #ccc;
   font-size: 0.8rem;
   font-weight: 600;
+  overflow: hidden;
 }
 
-/* Heart Badge */
 .cat-product-badge {
   position: absolute;
   top: 0.8rem;
@@ -211,7 +198,6 @@
   transform: scale(1.1);
 }
 
-/* Product Info */
 .cat-product-info h4 {
   margin: 0 0 0.5rem 0;
   font-size: 0.95rem;
@@ -235,14 +221,13 @@
   font-size: 1rem;
 }
 
-/* --- ADD BUTTON (Expanding Effect) --- */
 .cat-add-btn {
-  background-color: #fcecee; /* Light Pink */
+  background-color: #f0f0f0; 
   color: var(--primary-color);
   border: none;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,21 +242,18 @@
   transform: scale(1.05);
 }
 
-/* Force white icon on hover when NOT adding */
 .cat-add-btn:not([data-adding="true"]):hover svg {
   stroke: white !important;
 }
 
-/* EXPANDED STATE */
 .cat-add-btn[data-adding="true"] {
   background-color: var(--primary-color);
   color: white;
-  width: 90px; /* Expands width */
-  border-radius: 20px; /* Changes shape */
+  width: 90px;
+  border-radius: 2px;
   transform: none;
 }
 
-/* Content inside expanded button */
 .success-content {
   display: flex;
   align-items: center;
@@ -288,7 +270,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- TOAST NOTIFICATION --- */
 .toast-notification {
   position: fixed;
   bottom: 100px; 
@@ -300,7 +281,7 @@
   border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 5px 20px rgba(168, 87, 104, 0.4);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -316,39 +297,4 @@
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
-
-/* --- BOTTOM NAV (Shared) --- */
-.bottom-nav {
-  background-color: white;
-  border-top: 1px solid #ebd4d8;
-  display: flex;
-  justify-content: space-around;
-  padding: 0.8rem 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.03);
-}
-
-.nav-item {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text-light);
-  font-size: 0.7rem;
-  gap: 4px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.nav-item:hover {
-  color: var(--primary-color);
-}
-
-.nav-item.active {
-  color: var(--primary-color);
-}
+/* BOTTOM NAV STYLES REMOVED */

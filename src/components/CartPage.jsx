@@ -5,46 +5,28 @@ import {
 } from 'lucide-react';
 import '../CartPage.css';
 
-// Import your image
-import cart1 from '../assets/download (2).jpeg';
-import cart2 from '../assets/Truffles Assortment Gift Box - Etsy.jpeg';
-import cart3 from '../assets/Vanilla Bean Candle White Jar Soy Wax Candle.jpeg';
-
 const CartPage = ({ onNavigate }) => {
-  // Dummy Cart Data
+  // Remote Images (Subject: Sunglasses)
+  const IMG_AVIATOR = "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=300&q=60";
+  const IMG_CAT_EYE = "https://images.unsplash.com/photo-1509631179647-b8d22038bf35?auto=format&fit=crop&w=300&q=60";
+  const IMG_CASE = "https://images.unsplash.com/photo-1627483262268-9c96d8aaf21d?auto=format&fit=crop&w=300&q=60";
+
   const [cartItems, setCartItems] = useState([
     {
-      id: 1,
-      name: 'Luxury Rose Bouquet',
-      price: 10000.00,
-      quantity: 1,
-      image: cart1, // <--- This will now show up!
-      variant: 'Red Roses'
+      id: 1, name: 'Luxury Aviators', price: 4500.00, quantity: 1, image: IMG_AVIATOR, variant: 'Gold Frame'
     },
     {
-      id: 2,
-      name: 'Assorted Truffles Box',
-      price: 500.00,
-      quantity: 2,
-      image: cart2, // This will show the placeholder "No Img"
-      variant: '12 Pieces'
+      id: 2, name: 'Oversized Cat Eye', price: 3800.00, quantity: 2, image: IMG_CAT_EYE, variant: 'Black'
     },
     {
-      id: 3,
-      name: 'Scented Soy Candle',
-      price: 300.00,
-      quantity: 1,
-      image:cart3, 
-      variant: 'Vanilla Bean'
+      id: 3, name: 'Leather Case', price: 850.00, quantity: 1, image: IMG_CASE, variant: 'Brown'
     }
   ]);
 
-  // Calculate Total
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const shipping = 200.00;
+  const shipping = 150.00;
   const total = subtotal + shipping;
 
-  // Handlers
   const updateQuantity = (id, change) => {
     setCartItems(items => items.map(item => {
       if (item.id === id) {
@@ -61,76 +43,35 @@ const CartPage = ({ onNavigate }) => {
 
   return (
     <div className="cart-container">
-      {/* HEADER */}
       <div className="cart-header">
-        <button className="back-btn" onClick={() => onNavigate('home')}>
-          <ArrowLeft size={24} />
-        </button>
+        <button className="back-btn" onClick={() => onNavigate('home')}><ArrowLeft size={24} /></button>
         <h2>My Cart ({cartItems.length})</h2>
         <button className="clear-btn" onClick={() => setCartItems([])}>Clear</button>
       </div>
 
-      {/* CART CONTENT */}
       <div className="cart-content">
         {cartItems.length > 0 ? (
           <div className="cart-list">
             {cartItems.map((item) => (
               <div key={item.id} className="cart-item">
-                
-                {/* --- FIX: RENDER IMAGE HERE --- */}
                 <div className="cart-item-image">
                   {item.image ? (
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'cover', 
-                        borderRadius: '8px' 
-                      }} 
-                    />
+                    <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
                   ) : (
-                    /* Fallback if no image is provided */
-                    <div style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        background: '#eee', 
-                        borderRadius: '8px', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        color: '#888',
-                        fontSize: '0.8rem'
-                    }}>
-                        No Img
-                    </div>
+                    <span>No Img</span>
                   )}
                 </div>
-                {/* ----------------------------- */}
-                
                 <div className="cart-item-details">
                   <div className="item-top">
-                    <div>
-                      <h3>{item.name}</h3>
-                      <p className="item-variant">{item.variant}</p>
-                    </div>
-                    <button className="delete-btn" onClick={() => removeItem(item.id)}>
-                      <Trash2 size={18} />
-                    </button>
+                    <div><h3>{item.name}</h3><p className="item-variant">{item.variant}</p></div>
+                    <button className="delete-btn" onClick={() => removeItem(item.id)}><Trash2 size={18} /></button>
                   </div>
-
                   <div className="item-bottom">
                     <span className="item-price">₱{item.price.toFixed(2)}</span>
-                    
                     <div className="quantity-controls">
-                      <button onClick={() => updateQuantity(item.id, -1)}>
-                        <Minus size={16} />
-                      </button>
+                      <button onClick={() => updateQuantity(item.id, -1)}><Minus size={16} /></button>
                       <span>{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, 1)}>
-                        <Plus size={16} />
-                      </button>
+                      <button onClick={() => updateQuantity(item.id, 1)}><Plus size={16} /></button>
                     </div>
                   </div>
                 </div>
@@ -139,64 +80,31 @@ const CartPage = ({ onNavigate }) => {
           </div>
         ) : (
           <div className="empty-cart">
-            <div className="empty-icon-circle">
-              <ShoppingCart size={40} />
-            </div>
+            <div className="empty-icon-circle"><ShoppingCart size={40} /></div>
             <h3>Your cart is empty</h3>
             <p>Looks like you haven't added anything yet.</p>
-            <button className="start-shopping-btn" onClick={() => onNavigate('home')}>
-              Start Shopping
-            </button>
+            <button className="start-shopping-btn" onClick={() => onNavigate('home')}>Start Shopping</button>
           </div>
         )}
       </div>
 
-      {/* ORDER SUMMARY */}
       {cartItems.length > 0 && (
         <div className="cart-summary">
-          <div className="summary-row">
-            <span>Subtotal</span>
-            <span>₱{subtotal.toFixed(2)}</span>
-          </div>
-          <div className="summary-row">
-            <span>Shipping</span>
-            <span>₱{shipping.toFixed(2)}</span>
-          </div>
+          <div className="summary-row"><span>Subtotal</span><span>₱{subtotal.toFixed(2)}</span></div>
+          <div className="summary-row"><span>Shipping</span><span>₱{shipping.toFixed(2)}</span></div>
           <div className="divider"></div>
-          <div className="summary-total">
-            <span>Total</span>
-            <span>₱{total.toFixed(2)}</span>
-          </div>
-          
-          <button 
-            className="checkout-btn"
-            onClick={() => onNavigate('checkout')}
-          >
-            Proceed to Checkout
-          </button>
+          <div className="summary-total"><span>Total</span><span>₱{total.toFixed(2)}</span></div>
+          <button className="checkout-btn" onClick={() => onNavigate('checkout')}>Proceed to Checkout</button>
         </div>
       )}
-
-      {/* BOTTOM NAV */}
       <nav className="bottom-nav">
-        <button className="nav-item" onClick={() => onNavigate('home')}>
-          <Home size={22} /><span>Home</span>
-        </button>
-        <button className="nav-item active">
-          <ShoppingCart size={22} /><span>Cart</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('messages')}>
-          <MessageCircle size={22} /><span>Messages</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('notifications')}>
-          <Bell size={22} /><span>Notifications</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('me')}>
-          <User size={22} /><span>Me</span>
-        </button>
+        <button className="nav-item" onClick={() => onNavigate('home')}><Home size={22} /><span>Home</span></button>
+        <button className="nav-item active"><ShoppingCart size={22} /><span>My Cart</span></button>
+        <button className="nav-item" onClick={() => onNavigate('messages')}><MessageCircle size={22} /><span>Messages</span></button>
+        <button className="nav-item" onClick={() => onNavigate('notifications')}><Bell size={22} /><span>Notification</span></button>
+        <button className="nav-item" onClick={() => onNavigate('me')}><User size={22} /><span>Me</span></button>
       </nav>
     </div>
   );
 };
-
 export default CartPage;

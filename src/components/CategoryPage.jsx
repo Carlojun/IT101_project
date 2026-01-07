@@ -5,66 +5,42 @@ import {
 } from 'lucide-react';
 import '../CategoryPage.css';
 
-// --- IMPORT IMAGES ---
-import RedRoseImg from '../assets/Ms.jpeg';
-import SunflowerImg from '../assets/Bright & Cheerful Sunflower Bouquet.jpeg';
-import TulipImg from '../assets/bouquet of flowers!! 💐.jpeg';
-import OrchidImg from '../assets/download (3).jpeg';
-import CandyImg from '../assets/download (4).jpeg'; // Assuming you renamed the candy image or use a placeholder
-import FerreroImg from '../assets/Truffles Assortment Gift Box - Etsy.jpeg';
-import Gummy from '../assets/Strawberry + Mango Gummy Bears - Default Title.jpeg';
-import Matcha from '../assets/download (5).jpeg';
-import Liquer from '../assets/Anthon Berg Chocolate Liqueur Bottle Variety Collection - The Vermont Country Store.jpeg';
-import SpaImg from '../assets/Spa Gift Box - Friendship Gift Box - Thinking of You Gift - Gift for her - Self Care Gift - Gift for Mom - Friendship Gift -Pampering Gift.jpeg';
-import CoffeeSetImg from '../assets/download (6).jpeg';
-import Wine from '../assets/10 Creative New Year Gift Box Ideas to Wow Your Loved Ones.jpeg';
-import GiftBoxImg from '../assets/download (7).jpeg';
-import Movie from '../assets/Movie.jpeg';
-import MugImg from '../assets/__Personalized Merry Christmas with Photo & Name Coffee Mug.jpeg';
-import Pen from '../assets/Pen.jpeg';
-import Towel from '../assets/Terry Palmer Personalized Towel by Terry Palmer Personalized Towel _ Bridestory_com.jpeg';
-import Keychain from '../assets/Keychain.jpeg';
-import CustomBoxImg from '../assets/simple T-shirts ideas.jpeg';
-
 const CategoryPage = ({ category, onBack, onNavigate }) => {
   const [favorites, setFavorites] = useState([]);
   const [addingToCart, setAddingToCart] = useState(null);
   const [toast, setToast] = useState({ show: false, message: '' });
-  
-  // Filter States
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortBy, setSortBy] = useState('Recommended');
   const [displayedProducts, setDisplayedProducts] = useState([]);
 
-  // DATABASE OF ITEMS WITH IMAGES
+  // --- REMOTE IMAGES (Subject: Sunglasses Only) ---
+  const IMG_AVIATOR = "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=500&q=60";
+  const IMG_WAYFARER = "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=500&q=60";
+  const IMG_ROUND = "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=500&q=60";
+  const IMG_CAT = "https://images.unsplash.com/photo-1509631179647-b8d22038bf35?auto=format&fit=crop&w=500&q=60";
+  const IMG_SPORT = "https://images.unsplash.com/photo-1556906781-9a412961d289?auto=format&fit=crop&w=500&q=60";
+  const IMG_CASE = "https://images.unsplash.com/photo-1627483262268-9c96d8aaf21d?auto=format&fit=crop&w=500&q=60";
+  const IMG_CLOTH = "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=500&q=60"; // Used generic glass image
+
+  // SUNGLASSES DATABASE
   const productsDB = {
-    'The Flower Shop': [
-      { id: 101, name: 'Red Rose Bouquet', price: 1200, date: '2023-10-01', image: RedRoseImg },
-      { id: 102, name: 'Sunflower Sunshine', price: 850, date: '2023-11-15', image: SunflowerImg },
-      { id: 103, name: 'Tulip Garden', price: 1500, date: '2023-09-20', image: TulipImg },
-      { id: 104, name: 'Dried Flower Vase', price: 650, date: '2023-12-01', image: OrchidImg }, // Reusing Orchid/Flower img
-      { id: 105, name: 'Orchid Pot', price: 950, date: '2023-08-05', image: OrchidImg },
+    'Men': [
+      { id: 101, name: 'Carbon Fiber Pilot', price: 5500, date: '2023-10-01', image: IMG_AVIATOR },
+      { id: 102, name: 'Square Acetate', price: 4200, date: '2023-11-15', image: IMG_WAYFARER },
+      { id: 103, name: 'Sport Performance', price: 3800, date: '2023-09-20', image: IMG_SPORT },
     ],
-    'Candies & Chocolates': [
-      { id: 201, name: 'Assorted Truffles', price: 500, date: '2023-10-10', image: FerreroImg },
-      { id: 202, name: 'Dark Choco Bar', price: 150, date: '2023-11-01', image: CandyImg }, 
-      { id: 203, name: 'Gummy Bear Jar', price: 300, date: '2023-09-15', image: Gummy }, 
-      { id: 204, name: 'Matcha Pralines', price: 450, date: '2023-12-05', image: Matcha },
-      { id: 205, name: 'Liqueur Chocolates', price: 600, date: '2023-08-20', image: Liquer },
+    'Women': [
+      { id: 201, name: 'Cat Eye Oversized', price: 4800, date: '2023-10-10', image: IMG_CAT },
+      { id: 202, name: 'Rose Gold Round', price: 5100, date: '2023-11-01', image: IMG_ROUND }, 
+      { id: 203, name: 'Tortoise Shell', price: 3900, date: '2023-09-15', image: IMG_WAYFARER }, 
     ],
-    'Packs & Gifts': [
-      { id: 301, name: 'Spa Essentials Kit', price: 1200, date: '2023-10-05', image: SpaImg },
-      { id: 302, name: 'Coffee Lover Set', price: 950, date: '2023-11-20', image: CoffeeSetImg },
-      { id: 303, name: 'Wine & Cheese Box', price: 2500, date: '2023-09-10', image: Wine },
-      { id: 304, name: 'Fruit Basket', price: 800, date: '2023-12-10', image: GiftBoxImg },
-      { id: 305, name: 'Movie Night Pack', price: 650, date: '2023-08-15', image: Movie },
+    'Unisex': [
+      { id: 301, name: 'Classic Wayfarer', price: 4500, date: '2023-10-05', image: IMG_WAYFARER },
+      { id: 302, name: 'Minimal Metal', price: 4100, date: '2023-11-20', image: IMG_AVIATOR },
     ],
-    'Customize Gifts': [
-      { id: 401, name: 'Engraved Pen', price: 450, date: '2023-10-12', image: Pen },
-      { id: 402, name: 'Photo Mug', price: 250, date: '2023-11-25', image: MugImg },
-      { id: 403, name: 'Embroidered Towel', price: 500, date: '2023-09-05', image: Towel },
-      { id: 404, name: 'Custom Keychain', price: 150, date: '2023-12-15', image: Keychain },
-      { id: 405, name: 'Printed T-Shirt', price: 600, date: '2023-08-30', image: CustomBoxImg },
+    'Accessories': [
+      { id: 401, name: 'Leather Case', price: 850, date: '2023-10-12', image: IMG_CASE },
+      { id: 402, name: 'Cleaning Kit', price: 450, date: '2023-11-25', image: IMG_CLOTH },
     ]
   };
 
@@ -98,21 +74,13 @@ const CategoryPage = ({ category, onBack, onNavigate }) => {
 
   return (
     <div className="category-page-container">
-      {/* HEADER */}
       <div className="cat-header">
-        <button className="back-btn" onClick={onBack}>
-          <ArrowLeft size={24} />
-        </button>
-        <h2>{category || 'Category'}</h2>
+        <button className="back-btn" onClick={onBack}><ArrowLeft size={24} color="#333" /></button>
+        <h2 style={{color: '#333'}}>{category || 'Category'}</h2>
         <div className="header-right">
-          <button className="header-icon-btn" onClick={() => onNavigate('cart')}>
-            <ShoppingCart size={22} />
-          </button>
+          <button className="header-icon-btn" onClick={() => onNavigate('cart')}><ShoppingCart size={22} /></button>
           <div className="filter-container">
-            <button 
-              className={`filter-btn ${isFilterOpen ? 'active' : ''}`} 
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-            >
+            <button className={`filter-btn ${isFilterOpen ? 'active' : ''}`} onClick={() => setIsFilterOpen(!isFilterOpen)}>
               <Filter size={22} />
             </button>
             {isFilterOpen && (
@@ -128,49 +96,32 @@ const CategoryPage = ({ category, onBack, onNavigate }) => {
 
       <div className="sort-status">Showing: <span>{sortBy}</span></div>
 
-      {/* CONTENT */}
       <div className="cat-content">
         <div className="cat-grid">
           {displayedProducts.map((product) => {
             const isLiked = favorites.includes(product.id);
             const isAdding = addingToCart === product.id;
-
             return (
               <div key={product.id} className="cat-product-card">
                 <div className="cat-product-badge" onClick={() => toggleFavorite(product.id)}>
-                  <Heart size={20} color={isLiked ? "#a85768" : "#ccc"} fill={isLiked ? "#a85768" : "none"} />
+                  <Heart size={20} color={isLiked ? "#333" : "#ccc"} fill={isLiked ? "#333" : "none"} />
                 </div>
-                
-                {/* --- IMAGE RENDERING FIX --- */}
                 <div className="cat-product-image">
                     {product.image ? (
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                        />
+                        <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     ) : (
                         <span>No Img</span>
                     )}
                 </div>
-                {/* --------------------------- */}
-                
                 <div className="cat-product-info">
-                  <h4>{product.name}</h4>
+                  <h4 style={{color:'#333'}}>{product.name}</h4>
                   <div className="cat-product-footer">
-                    <span className="price">₱{product.price}</span>
-                    <button 
-                      className="cat-add-btn" 
-                      onClick={() => handleAddToCart(product.id)}
-                      data-adding={isAdding ? "true" : "false"}
-                    >
+                    <span className="price" style={{color:'#666'}}>₱{product.price}</span>
+                    <button className="cat-add-btn" onClick={() => handleAddToCart(product.id)} data-adding={isAdding ? "true" : "false"}>
                       {isAdding ? (
-                        <div className="success-content">
-                          <Check size={16} color="white" />
-                          <span>Added</span>
-                        </div>
+                        <div className="success-content"><Check size={16} color="white" /><span>Added</span></div>
                       ) : (
-                        <ShoppingCart size={18} color="#a85768" />
+                        <ShoppingCart size={18} color="#333" />
                       )}
                     </button>
                   </div>
@@ -181,28 +132,13 @@ const CategoryPage = ({ category, onBack, onNavigate }) => {
         </div>
         {displayedProducts.length === 0 && <div className="empty-cat">No items found.</div>}
       </div>
-
-      <div className={`toast-notification ${toast.show ? 'show' : ''}`}>
-        <span>{toast.message}</span>
-        <Heart size={18} fill="white" color="white" />
-      </div>
-
+      <div className={`toast-notification ${toast.show ? 'show' : ''}`}><span>{toast.message}</span></div>
       <nav className="bottom-nav">
-        <button className="nav-item active" onClick={() => onNavigate('home')}>
-          <Home size={22} /><span>Home</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('cart')}>
-          <ShoppingCart size={22} /><span>Cart</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('messages')}>
-          <MessageCircle size={22} /><span>Messages</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('notifications')}>
-          <Bell size={22} /><span>Notifications</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('me')}>
-          <User size={22} /><span>Me</span>
-        </button>
+        <button className="nav-item active" onClick={() => onNavigate('home')}><Home size={22} /><span>Home</span></button>
+        <button className="nav-item" onClick={() => onNavigate('cart')}><ShoppingCart size={22} /><span>My Cart</span></button>
+        <button className="nav-item" onClick={() => onNavigate('messages')}><MessageCircle size={22} /><span>Messages</span></button>
+        <button className="nav-item" onClick={() => onNavigate('notifications')}><Bell size={22} /><span>Notifications</span></button>
+        <button className="nav-item" onClick={() => onNavigate('me')}><User size={22} /><span>Me</span></button>
       </nav>
     </div>
   );

@@ -11,9 +11,12 @@ import '../MePage.css';
 const MePage = ({ user, onNavigate, onLogout }) => {
   const [isEditing, setIsEditing] = useState(false);
   
-  // Initialize from Local Storage
+  // REMOTE IMAGE: Minimalist sunglasses on neutral background
+  // Subject: Sunglasses only
+  const DEFAULT_BG = "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=1200&q=80";
+
   const [profileImage, setProfileImage] = useState(() => localStorage.getItem('userProfileImage') || null);
-  const [backgroundImage, setBackgroundImage] = useState(() => localStorage.getItem('userBackgroundImage') || null);
+  const [backgroundImage, setBackgroundImage] = useState(() => localStorage.getItem('userBackgroundImage') || DEFAULT_BG);
 
   const profileInputRef = useRef(null);
   const backgroundInputRef = useRef(null);
@@ -48,10 +51,11 @@ const MePage = ({ user, onNavigate, onLogout }) => {
       <input type="file" ref={backgroundInputRef} onChange={(e) => handleImageChange(e, 'background')} style={{ display: 'none' }} accept="image/*" />
 
       {/* HEADER */}
-      <div className="profile-header" style={backgroundImage ? { 
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${backgroundImage})`,
-          backgroundSize: 'cover', backgroundPosition: 'center'
-        } : {}}>
+      <div className="profile-header" style={{ 
+          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${backgroundImage})`,
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center'
+        }}>
         
         {isEditing && (
           <button className="bg-edit-btn" onClick={() => backgroundInputRef.current.click()}>
@@ -59,7 +63,7 @@ const MePage = ({ user, onNavigate, onLogout }) => {
           </button>
         )}
 
-        <h3 className="page-title">My Profile</h3>
+        <h3 className="page-title">Profile</h3>
         
         <div className="profile-card">
           <div className="avatar-section">
@@ -67,7 +71,7 @@ const MePage = ({ user, onNavigate, onLogout }) => {
               {profileImage ? (
                 <img src={profileImage} alt="Profile" className="uploaded-avatar" />
               ) : (
-                <span className="avatar-initials">{user?.displayName ? user.displayName.charAt(0).toUpperCase() : 'B'}</span>
+                <span className="avatar-initials">{user?.displayName ? user.displayName.charAt(0).toUpperCase() : 'U'}</span>
               )}
               {isEditing && (
                 <div className="avatar-overlay" onClick={() => profileInputRef.current.click()}>
@@ -80,9 +84,9 @@ const MePage = ({ user, onNavigate, onLogout }) => {
           
           <div className="user-info">
             <div className="name-row">
-              <h2 className="user-name">{user?.displayName || 'bea'}</h2>
-              <span className="user-email">{user?.email || 'bea@gmail.com'}</span>
-              <div className="member-pill"><span>Gold Member</span><ChevronRight size={10} /></div>
+              <h2 className="user-name">{user?.displayName || 'Sungla Member'}</h2>
+              <span className="user-email">{user?.email || 'member@sungla.com'}</span>
+              <div className="member-pill"><span>VIP Access</span><ChevronRight size={10} /></div>
             </div>
           </div>
           
@@ -92,52 +96,83 @@ const MePage = ({ user, onNavigate, onLogout }) => {
         </div>
       </div>
 
+      {/* CONTENT */}
       <div className="me-content">
-        {/* STATS */}
+        {/* Stats Row */}
         <div className="stats-row">
-          <div className="stat-item"><span className="stat-value">12</span><span className="stat-label">Vouchers</span></div>
+          <div className="stat-item">
+            <span className="stat-value">3</span>
+            <span className="stat-label">Orders</span>
+          </div>
           <div className="stat-divider"></div>
-          <div className="stat-item"><span className="stat-value">450</span><span className="stat-label">Points</span></div>
+          <div className="stat-item">
+            <span className="stat-value">12</span>
+            <span className="stat-label">Wishlist</span>
+          </div>
           <div className="stat-divider"></div>
-          <div className="stat-item"><span className="stat-value">0</span><span className="stat-label">Gift Cards</span></div>
-        </div>
-
-        {/* PURCHASES */}
-        <div className="section-box purchases-box">
-          <div className="box-header"><h3>My Purchases</h3><span className="view-history">View History <ChevronRight size={14} /></span></div>
-          <div className="purchases-grid">
-            <div className="purchase-item"><div className="icon-circle"><CreditCard size={22} /></div><span>To Pay</span></div>
-            <div className="purchase-item"><div className="icon-circle"><Package size={22} /></div><span>To Ship</span></div>
-            <div className="purchase-item"><div className="icon-circle"><Truck size={22} /></div><span>To Receive</span></div>
-            <div className="purchase-item"><div className="icon-circle"><Star size={22} /></div><span>To Rate</span></div>
+          <div className="stat-item">
+            <span className="stat-value">500</span>
+            <span className="stat-label">Points</span>
           </div>
         </div>
 
-        {/* MENU */}
-        <div className="section-box menu-list">
-          <div className="menu-item"><div className="menu-left"><Heart size={20} className="menu-icon" /><span>My Wishlist</span></div><ChevronRight size={18} color="#ccc" /></div>
-          <div className="menu-item"><div className="menu-left"><User size={20} className="menu-icon" /><span>Account</span></div><ChevronRight size={18} color="#ccc" /></div>
-          <div className="menu-item"><div className="menu-left"><Settings size={20} className="menu-icon" /><span>Settings</span></div><ChevronRight size={18} color="#ccc" /></div>
-          <div className="menu-item"><div className="menu-left"><HelpCircle size={20} className="menu-icon" /><span>Help Center</span></div><ChevronRight size={18} color="#ccc" /></div>
+        {/* Purchases Box */}
+        <div className="section-box purchases-box">
+          <div className="box-header">
+            <h3>My Orders</h3>
+            <span className="view-history">View All <ChevronRight size={14} /></span>
+          </div>
+          <div className="purchases-grid">
+            <div className="purchase-item">
+              <div className="icon-circle"><CreditCard size={20} /></div>
+              <span>Unpaid</span>
+            </div>
+            <div className="purchase-item">
+              <div className="icon-circle"><Package size={20} /></div>
+              <span>Processing</span>
+            </div>
+            <div className="purchase-item">
+              <div className="icon-circle"><Truck size={20} /></div>
+              <span>Shipped</span>
+            </div>
+            <div className="purchase-item">
+              <div className="icon-circle"><Star size={20} /></div>
+              <span>Review</span>
+            </div>
+          </div>
         </div>
 
-        {/* LOGOUT */}
+        {/* Menu List */}
+        <div className="section-box menu-list">
+          <div className="menu-item">
+            <div className="menu-left"><Heart size={20} className="menu-icon" /><span>My Wishlist</span></div>
+            <ChevronRight size={18} color="#ccc" />
+          </div>
+          <div className="menu-item">
+            <div className="menu-left"><User size={20} className="menu-icon" /><span>Account Details</span></div>
+            <ChevronRight size={18} color="#ccc" />
+          </div>
+          <div className="menu-item">
+            <div className="menu-left"><Settings size={20} className="menu-icon" /><span>App Settings</span></div>
+            <ChevronRight size={18} color="#ccc" />
+          </div>
+          <div className="menu-item">
+            <div className="menu-left"><HelpCircle size={20} className="menu-icon" /><span>Help Center</span></div>
+            <ChevronRight size={18} color="#ccc" />
+          </div>
+        </div>
+
+        {/* Logout */}
         <button className="logout-row-btn" onClick={handleLogoutClick}>
-          <LogOut size={20} /><span>Log Out</span>
+          <LogOut size={20} /><span>Sign Out</span>
         </button>
       </div>
 
       <nav className="bottom-nav">
-        <button className="nav-item" onClick={() => onNavigate('home')}>
-          <Home size={22} /><span>Home</span></button>
-        <button className="nav-item" onClick={() => onNavigate('cart')}>
-          <ShoppingCart size={22} />
-          <span>Cart</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('messages')}>
-          <MessageCircle size={22} /><span>Messages</span></button>
-        <button className="nav-item" onClick={() => onNavigate('notifications')}>
-          <Bell size={22} /><span>Notifications</span></button>
+        <button className="nav-item" onClick={() => onNavigate('home')}><Home size={22} /><span>Home</span></button>
+        <button className="nav-item" onClick={() => onNavigate('cart')}><ShoppingCart size={22} /><span>My Cart</span></button>
+        <button className="nav-item" onClick={() => onNavigate('messages')}><MessageCircle size={22} /><span>Messages</span></button>
+        <button className="nav-item" onClick={() => onNavigate('notifications')}><Bell size={22} /><span>Notification</span></button>
         <button className="nav-item active"><User size={22} /><span>Me</span></button>
       </nav>
     </div>

@@ -1,53 +1,49 @@
 import React, { useState } from 'react';
-import { 
-  Search, Edit, Home, ShoppingCart, MessageCircle, Bell, User
-} from 'lucide-react';
+import { Search, Edit, Home, ShoppingCart, MessageCircle, Bell, User } from 'lucide-react';
 import '../MessagesPage.css';
 
 const MessagesPage = ({ onNavigate }) => {
   const [activeTab, setActiveTab] = useState('All');
 
-  // Dummy Data
+  // --- REMOTE IMAGES (Sunglasses Subject) ---
+  // Support Avatar: Professional minimalist sunglasses shot
+  const IMG_SUPPORT = "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=150&q=80";
+  // Logistics Avatar: Sunglasses in a case/box to imply shipping
+  const IMG_LOGISTICS = "https://images.unsplash.com/photo-1627483262268-9c96d8aaf21d?auto=format&fit=crop&w=150&q=80";
+  // Promo/Brand Avatar: Artistic sunglasses shot
+  const IMG_BRAND = "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=150&q=80";
+
   const conversations = [
     {
-      id: 1,
-      name: 'The Flower Shop',
-      lastMessage: 'Your bouquet is ready for delivery! 🌸',
-      time: '2m ago',
-      unread: 2,
-      online: true,
-      initial: 'F'
+      id: 1, 
+      name: 'Sungla Support', 
+      lastMessage: 'Your return request for the Aviators has been approved.',
+      time: '10m ago', 
+      unread: 1, 
+      online: true, 
+      image: IMG_SUPPORT
     },
     {
-      id: 2,
-      name: 'Support Team',
-      lastMessage: 'How can we help you with your order?',
-      time: '1h ago',
-      unread: 0,
-      online: false,
-      initial: 'S'
+      id: 2, 
+      name: 'Logistics Team', 
+      lastMessage: 'Your package is out for delivery.',
+      time: '1h ago', 
+      unread: 0, 
+      online: false, 
+      image: IMG_LOGISTICS
     },
     {
-      id: 3,
-      name: 'Gift Wrapping Co.',
-      lastMessage: 'Sent you a photo of the wrapping paper.',
-      time: '1 day ago',
-      unread: 0,
-      online: false,
-      initial: 'G'
-    },
-    {
-      id: 4,
-      name: 'Delivery Rider',
-      lastMessage: 'I am near your location.',
-      time: '2 days ago',
-      unread: 0,
-      online: false,
-      initial: 'D'
+      id: 3, 
+      name: 'Sungla Offers', 
+      lastMessage: 'Check out our new Polarized collection!',
+      time: '1 day ago', 
+      unread: 0, 
+      online: false, 
+      image: IMG_BRAND
     }
   ];
 
-  // Filter Logic (Optional implementation)
+  // Filter Logic
   const displayList = activeTab === 'Unread' 
     ? conversations.filter(c => c.unread > 0) 
     : conversations;
@@ -58,19 +54,16 @@ const MessagesPage = ({ onNavigate }) => {
       <div className="messages-header">
         <div className="header-top">
           <h2>Messages</h2>
-          <button className="new-chat-btn"><Edit size={20} /></button>
         </div>
-        
-        {/* Search Bar */}
         <div className="msg-search-bar">
-          <Search size={18} className="search-icon" />
-          <input type="text" placeholder="Search messages..." />
+          <Search size={18} className="search-icon"/>
+          <input type="text" placeholder="Search conversations..."/>
         </div>
       </div>
 
-      {/* FILTER TABS */}
+      {/* TABS */}
       <div className="msg-tabs">
-        {['All', 'Unread', 'Groups'].map((tab) => (
+        {['All', 'Unread', 'Archived'].map((tab) => (
           <button 
             key={tab} 
             className={`msg-tab ${activeTab === tab ? 'active' : ''}`}
@@ -86,9 +79,7 @@ const MessagesPage = ({ onNavigate }) => {
         {displayList.map((chat) => (
           <div key={chat.id} className="chat-item">
             <div className="chat-avatar-container">
-              <div className="chat-avatar">
-                {chat.initial}
-              </div>
+              <img src={chat.image} alt={chat.name} className="chat-avatar-img" />
               {chat.online && <div className="online-dot"></div>}
             </div>
             
@@ -112,25 +103,11 @@ const MessagesPage = ({ onNavigate }) => {
 
       {/* BOTTOM NAV */}
       <nav className="bottom-nav">
-        <button className="nav-item" onClick={() => onNavigate('home')}>
-          <Home size={22} /><span>Home</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('cart')}>
-          <ShoppingCart size={22} />
-          <span>Cart</span>
-        </button>
-        
-        {/* Active State */}
-        <button className="nav-item active">
-          <MessageCircle size={22} /><span>Messages</span>
-        </button>
-        
-        <button className="nav-item" onClick={() => onNavigate('notifications')}>
-          <Bell size={22} /><span>Notifications</span>
-        </button>
-        <button className="nav-item" onClick={() => onNavigate('me')}>
-          <User size={22} /><span>Me</span>
-        </button>
+        <button className="nav-item" onClick={() => onNavigate('home')}><Home size={22} /><span>Home</span></button>
+        <button className="nav-item" onClick={() => onNavigate('cart')}><ShoppingCart size={22} /><span>My Cart</span></button>
+        <button className="nav-item active"><MessageCircle size={22} /><span>Messages</span></button>
+        <button className="nav-item" onClick={() => onNavigate('notifications')}><Bell size={22} /><span>Notification</span></button>
+        <button className="nav-item" onClick={() => onNavigate('me')}><User size={22} /><span>Me</span></button>
       </nav>
     </div>
   );

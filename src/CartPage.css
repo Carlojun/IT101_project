@@ -1,11 +1,11 @@
 /* src/CartPage.css */
 
 :root {
-  --primary-color: #a85768;   
-  --secondary-color: #d68c98; 
-  --bg-color: #f8f6f7;
-  --text-main: #4a3b3e;
-  --text-light: #998a8d;
+  --primary-color: #1a1a1a;   
+  --secondary-color: #7d7d7d; 
+  --bg-color: #f8f8f8;        
+  --text-main: #1a1a1a;
+  --text-light: #666666;
   --box-bg: #ffffff;
 }
 
@@ -29,7 +29,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .cart-header h2 {
@@ -37,6 +37,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 1.4rem;
   color: var(--primary-color);
+  letter-spacing: 1px;
 }
 
 .back-btn, .clear-btn {
@@ -50,6 +51,7 @@
   font-size: 0.9rem;
   color: var(--text-light);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .clear-btn:hover {
@@ -60,28 +62,29 @@
 .cart-content {
   flex: 1;
   padding: 1rem;
-  padding-bottom: 220px; /* Space for summary + nav */
+  padding-bottom: 220px; 
 }
 
 .cart-item {
   background: white;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 1rem;
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
 }
 
 .cart-item-image {
   width: 80px;
   height: 80px;
-  background-color: #fcecee;
-  border-radius: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color);
+  color: var(--text-light);
   font-weight: 600;
 }
 
@@ -103,6 +106,7 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-main);
+  font-family: 'Playfair Display', serif;
 }
 
 .item-variant {
@@ -120,7 +124,7 @@
 }
 
 .delete-btn:hover {
-  color: #ff4d4f;
+  color: #000;
 }
 
 .item-bottom {
@@ -136,12 +140,11 @@
   font-size: 1.1rem;
 }
 
-/* Quantity Controls */
 .quantity-controls {
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 50px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
   padding: 2px;
 }
 
@@ -150,13 +153,13 @@
   border: none;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--text-main);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .quantity-controls span {
@@ -166,7 +169,6 @@
   font-weight: 600;
 }
 
-/* EMPTY STATE */
 .empty-cart {
   display: flex;
   flex-direction: column;
@@ -179,7 +181,7 @@
 .empty-icon-circle {
   width: 100px;
   height: 100px;
-  background-color: #fff5f7;
+  background-color: #f0f0f0;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -195,34 +197,30 @@
   color: var(--text-main);
 }
 
-.empty-cart p {
-  color: var(--text-light);
-  margin-bottom: 2rem;
-}
-
 .start-shopping-btn {
   background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 1rem 2.5rem;
-  border-radius: 50px;
+  border-radius: 2px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(168, 87, 104, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* ORDER SUMMARY (Bottom Sheet) */
 .cart-summary {
   background: white;
   padding: 1.5rem;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
   position: fixed;
-  bottom: 60px; /* Above Bottom Nav */
+  bottom: 60px; 
   left: 0;
   right: 0;
   z-index: 90;
+  border-top: 1px solid #eee;
 }
 
 .summary-row {
@@ -254,14 +252,16 @@
   color: white;
   border: none;
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 2px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(168, 87, 104, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: background 0.2s;
 }
 
 .checkout-btn:hover {
-  background-color: #8a4552;
+  background-color: #333;
 }
+/* BOTTOM NAV STYLES REMOVED */

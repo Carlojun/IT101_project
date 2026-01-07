@@ -1,12 +1,12 @@
 /* src/MePage.css */
 
 :root {
-  --primary-color: #a85768;   
-  --secondary-color: #d68c98; 
-  --bg-color: #f8f6f7;
+  --primary-color: #1a1a1a;   
+  --secondary-color: #7d7d7d; 
+  --bg-color: #f8f8f8;
   --box-bg: #ffffff;
-  --text-main: #4a3b3e;
-  --text-light: #998a8d;
+  --text-main: #1a1a1a;
+  --text-light: #666666;
 }
 
 .me-container {
@@ -17,25 +17,26 @@
   padding-bottom: 90px;
 }
 
-/* --- 1. CLEAN HEADER SECTION --- */
 .profile-header {
-  background: linear-gradient(135deg, #a85768 0%, #d68c98 100%);
-  padding: 1.5rem 1.5rem 3.5rem 1.5rem; /* Padding adjusted */
+  background-color: #2c2c2c; 
+  padding: 1.5rem 1.5rem 3.5rem 1.5rem;
   color: white;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  box-shadow: 0 4px 15px rgba(168, 87, 104, 0.2);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .page-title {
-  margin: 0 0 1.5rem 0; /* Space below title */
+  margin: 0 0 1.5rem 0;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 1.2rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* User Card Layout */
 .profile-card {
   display: flex;
   align-items: center;
@@ -47,14 +48,15 @@
 }
 
 .avatar-circle {
-  width: 55px; /* Slightly smaller to match image */
-  height: 55px;
+  width: 60px;
+  height: 60px;
   background-color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 2px solid rgba(255,255,255,0.2);
 }
 
 .avatar-initials {
@@ -64,12 +66,11 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* Tiny Gold Badge */
 .badge-icon {
   position: absolute;
   bottom: -2px;
   right: -2px;
-  background-color: #f1c40f; 
+  background-color: #d4af37;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -79,88 +80,81 @@
   border: 2px solid white;
 }
 
-/* User Info - Flexible Row */
 .user-info {
   flex: 1;
   display: flex;
   align-items: center;
-  overflow: hidden; /* Prevents overflow on small screens */
+  overflow: hidden;
 }
 
 .name-row {
   display: flex;
-  align-items: baseline; /* Aligns text cleanly */
-  gap: 8px;
-  flex-wrap: wrap; /* Wraps if name is too long */
+  flex-direction: column;
+  gap: 2px;
 }
 
 .user-name {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  line-height: 1;
-  color: white; /* Force white text */
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Adds contrast shadow */
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  line-height: 1.1;
 }
 
 .user-email {
-  font-size: 0.75rem;
-  opacity: 0.95; /* Increased opacity */
-  font-weight: 500; /* Made slightly bolder */
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4); /* Adds contrast shadow */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
-
 
 .member-pill {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  background-color: rgba(0, 0, 0, 0.15); /* Dark transparent pill */
+  gap: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: 2px;
   font-size: 0.65rem;
   font-weight: 600;
   color: white;
-  white-space: nowrap;
+  margin-top: 4px;
+  backdrop-filter: blur(4px);
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .edit-btn {
-  background: white;
-  color: var(--primary-color); /* Pink Text */
-  border: 1px solid white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
   font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .edit-btn:hover {
-  transform: scale(1.05);
+  background: white;
+  color: var(--primary-color);
 }
 
-/* --- 2. CONTENT AREA (Overlap) --- */
 .me-content {
   padding: 0 1rem;
-  margin-top: -2rem; /* Pulls content up */
+  margin-top: -2rem; 
   position: relative;
   z-index: 10;
-  animation: slideUp 0.4s ease-out;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Stats Row */
 .stats-row {
   background: white;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -187,6 +181,7 @@
 .stat-label {
   font-size: 0.75rem;
   color: var(--text-light);
+  text-transform: uppercase;
 }
 
 .stat-divider {
@@ -195,19 +190,17 @@
   background-color: #eee;
 }
 
-/* Generic Box */
 .section-box {
   background-color: var(--box-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   margin-bottom: 1rem;
   overflow: hidden;
 }
 
-/* --- 3. PURCHASES BOX --- */
 .box-header {
   padding: 1rem;
-  border-bottom: 1px solid #f9f9f9;
+  border-bottom: 1px solid #f5f5f5;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -217,15 +210,17 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
+  font-family: 'Playfair Display', serif;
 }
 
 .view-history {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-light);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 2px;
+  text-transform: uppercase;
 }
 
 .purchases-grid {
@@ -243,11 +238,10 @@
   color: var(--text-main);
 }
 
-/* Icon Circle */
 .icon-circle {
   width: 45px;
   height: 45px;
-  background-color: #fff5f7;
+  background-color: #f5f5f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -267,13 +261,12 @@
   font-weight: 500;
 }
 
-/* --- 4. MENU LIST --- */
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.2rem;
-  border-bottom: 1px solid #fcfcfc;
+  border-bottom: 1px solid #f9f9f9;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -295,13 +288,12 @@
   color: var(--secondary-color);
 }
 
-/* --- 5. LOGOUT BUTTON --- */
 .logout-row-btn {
   width: 100%;
   background-color: white;
-  border: none;
+  border: 1px solid #eee;
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,51 +302,18 @@
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
   margin-top: 1rem;
   transition: background 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .logout-row-btn:hover {
-  background-color: #fff5f5;
+  background-color: #1a1a1a;
+  color: white;
 }
 
-/* --- BOTTOM NAV --- */
-.bottom-nav {
-  background-color: white;
-  border-top: 1px solid #ebd4d8;
-  display: flex;
-  justify-content: space-around;
-  padding: 0.8rem 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.02);
-}
-
-.nav-item {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text-light);
-  font-size: 0.7rem;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.nav-item.active {
-  color: var(--primary-color);
-}
-
-/* ADD THESE TO YOUR EXISTING src/MePage.css */
-
-/* --- EDIT MODE STYLES --- */
-
-/* 1. Uploaded Avatar Image */
 .uploaded-avatar {
   width: 100%;
   height: 100%;
@@ -362,29 +321,26 @@
   border-radius: 50%;
 }
 
-/* 2. Avatar Camera Overlay */
 .avatar-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  animation: fadeIn 0.2s;
 }
 
-/* 3. Background Camera Button */
 .bg-edit-btn {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
@@ -395,28 +351,10 @@
   font-weight: 600;
   cursor: pointer;
   z-index: 20;
+  backdrop-filter: blur(4px);
 }
 
 .bg-edit-btn:hover {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
 }
-
-/* 4. Edit/Save Button State */
-.edit-btn.save-mode {
-  background-color: var(--primary-color); /* Highlight color when saving */
-  color: white;
-  border-color: var(--primary-color);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Ensure the header handles images well */
-.profile-header {
-  transition: background 0.3s ease; /* Smooth transition for background image */
-}
-
-
-
+/* BOTTOM NAV STYLES REMOVED */

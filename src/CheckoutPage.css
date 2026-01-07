@@ -57,7 +57,7 @@
   }
   
   .section-icon {
-    color: #a85768;
+    color: #060606;
   }
   
   .section-header h3 {
@@ -71,7 +71,7 @@
   .edit-link {
     background: none;
     border: none;
-    color: #a85768;
+    color: #000000;
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
@@ -163,8 +163,8 @@
   }
   
   .payment-option.active {
-    border-color: #a85768;
-    background-color: #fff5f7;
+    border-color: #000000;
+    background-color: #ffffff;
   }
   
   .pay-left {
@@ -173,19 +173,6 @@
     gap: 10px;
     font-size: 0.95rem;
     color: #333;
-  }
-  
-  .gcash-icon {
-    width: 20px;
-    height: 20px;
-    background: #007bff;
-    color: white;
-    border-radius: 4px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
   }
   
   /* COST BREAKDOWN */
