@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
-import Logo from '../assets/Logo.png';
 import { 
   Search, Heart, ShoppingCart, Home, MessageCircle, Bell, User, Check 
 } from 'lucide-react';
 import { logout } from '../services/AuthServices.js';
 import '../homepage.css';
 
+// --- 1. IMPORT YOUR IMAGES ---
+import Logo from '../assets/Logo.png';
+import FlowerShopImg from '../assets/flowers1.png';
+import CandyImg from '../assets/sweets4.jpg'; 
+import PacksImg from '../assets/beautiful-golden-gift-box-flowers-260nw-2113230749.png';
+import CustomImg from '../assets/flowers3.png';
+// Import the product image
+import RedRose from '../assets/Ms.jpeg'; 
+import Ferrero from '../assets/Pink Bow Ferrero Rocher Chocolates.jpeg';
+import Spa from '../assets/Spa Gift Box - Friendship Gift Box - Thinking of You Gift - Gift for her - Self Care Gift - Gift for Mom - Friendship Gift -Pampering Gift.jpeg';
+import Mug from '../assets/__Personalized Merry Christmas with Photo & Name Coffee Mug.jpeg';
+import Candle from '../assets/Marble Effect Jar Candle.jpeg';
+import Pot from '../assets/Indoor Succulent Plants.jpeg';
+
 const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
   const [favorites, setFavorites] = useState([]);
   const [addingToCart, setAddingToCart] = useState(null);
   const [toast, setToast] = useState({ show: false, message: '' });
 
-  // 1. DATA: THIS MONTH'S PICK
+  // --- 2. MAP IMAGES TO CATEGORIES ---
+  const categories = [
+    { name: 'The Flower Shop', image: FlowerShopImg },
+    { name: 'Candies & Chocolates', image: CandyImg }, 
+    { name: 'Packs & Gifts', image: PacksImg },
+    { name: 'Customize Gifts', image: CustomImg },
+  ];
+
+  // 3. DATA: THIS MONTH'S PICK
+  // We use the imported variables (like RedRose) for the image field.
+  // For items without a specific image yet, I used 'CustomImg' as a placeholder.
   const monthPicks = [
-    { id: 1, name: 'Classic Red Roses', price: '₱1,500' },
-    { id: 2, name: 'Ferrero Rocher Box', price: '₱850' },
-    { id: 3, name: 'Spa Relaxation Kit', price: '₱1,200' },
-    { id: 4, name: 'Personalized Mug', price: '₱350' },
-    { id: 5, name: 'Lavender Scented Candle', price: '₱450' },
-    { id: 6, name: 'Succulent Pot Trio', price: '₱950' },
+    { id: 1, name: 'Classic Red Roses', price: '₱1,500', image: RedRose }, 
+    { id: 2, name: 'Ferrero Rocher Box', price: '₱850', image: Ferrero },
+    { id: 3, name: 'Spa Relaxation Kit', price: '₱1,200', image: Spa },
+    { id: 4, name: 'Personalized Mug', price: '₱350', image: Mug },
+    { id: 5, name: 'Lavender Scented Candle', price: '₱450', image: Candle },
+    { id: 6, name: 'Succulent Pot Trio', price: '₱950', image: Pot },
   ];
 
   const handleLogout = async () => {
@@ -55,7 +78,6 @@ const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
         <div className="header-content">
           <div className="logo-section">
             <img src={Logo} alt="The Gifting Co. Logo" className="brand-logo" />
-            <h1 className="company-name">The Gifting Co.</h1>
           </div>
           
           <div className="search-bar">
@@ -67,7 +89,7 @@ const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
 
           <div className="header-actions">
             <span className="welcome-text">
-              Welcome, {user?.displayName || 'Guest'}
+              Welcome, {user?.displayName || 'Bea'}
             </span>
             <div className="header-avatar" onClick={() => onNavigate('me')}>
               <User size={20} color="#a85768" />
@@ -87,16 +109,22 @@ const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
           </div>
         </section>
 
+        {/* --- CATEGORY SECTION --- */}
         <section className="category-section">
           <h3 className="section-title">SHOP BY CATEGORY</h3>
           <div className="category-grid">
-            {['The Flower Shop', 'Candies & Chocolates', 'Packs & Gifts', 'Customize Gifts'].map((category, idx) => (
+            {categories.map((cat, idx) => (
               <div key={idx} className="category-card">
-                <div className="category-image">Picture here</div>
-                <h4>{category}</h4>
+                <img 
+                  src={cat.image} 
+                  alt={cat.name} 
+                  className="category-image"
+                  style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px' }} 
+                />
+                <h4>{cat.name}</h4>
                 <button 
                   className="view-more-btn"
-                  onClick={() => onCategorySelect(category)}
+                  onClick={() => onCategorySelect(cat.name)}
                 >
                   View More
                 </button>
@@ -105,7 +133,7 @@ const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
           </div>
         </section>
 
-        {/* 2. UPDATED PRODUCTS SECTION */}
+        {/* --- PRODUCTS SECTION (UPDATED) --- */}
         <section className="products-section">
           <h3 className="section-title">THIS MONTH'S PICK</h3>
           <div className="products-grid">
@@ -123,10 +151,15 @@ const HomePage = ({ user, onLogout, onNavigate, onCategorySelect }) => {
                     />
                   </div>
                   
-                  {/* Image Placeholder */}
-                  <div className="product-image">Picture here</div>
+                  {/* --- FIXED IMAGE RENDERING HERE --- */}
+                  <div className="product-image" style={{ width: '100%', height: '150px', overflow: 'hidden', borderRadius: '8px', marginBottom: '10px' }}>
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  </div>
                   
-                  {/* Product Info */}
                   <h4 className="product-name">{product.name}</h4>
                   
                   <div className="product-footer">
