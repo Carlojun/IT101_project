@@ -1,6 +1,6 @@
 ## IT 101- FINAL PROJECT
 
-BY: BEA SANDARA ABONALES & FRIENSAN PABLO
+BY: CJ D. Pesical
 
 
 ## Note: Sign in first to be able to enter to the homepage. Since this is a frontend only , type in a random verification number.
