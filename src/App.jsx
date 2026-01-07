@@ -6,7 +6,7 @@ import { auth } from './Firebase/config';
 // IMPORT PAGES
 import LoginPage from './components/Login';
 import SignupPage from './components/Signup';
-import HomePage from './components/HomePage';
+import HomePage from './components/homepage';
 import MePage from './components/MePage';
 import NotificationPage from './components/NotificationPage';
 import MessagesPage from './components/MessagesPage';
